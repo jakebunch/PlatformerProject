@@ -23,7 +23,7 @@ public class World {
 	public World(Handler handler, String path) {
 		this.handler = handler;
 		entityManager = new EntityManager(handler, new Player(handler, 0, 0));
-		entityManager.addEntity(new Box(handler, 50, 350, 128, 64));
+		//entityManager.addEntity(new Box(handler, 50, 350, 128, 64));
 		
 		loadWorld(path);
 		

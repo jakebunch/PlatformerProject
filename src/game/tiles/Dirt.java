@@ -19,5 +19,10 @@ public class Dirt extends Tile {
 	public boolean isSolid() {
 		return true;
 	}
+	
+	@Override
+	public boolean isVaultable() {
+		return true;
+	}
 
 }

@@ -13,6 +13,13 @@ public class Assets {
 	public static BufferedImage[] playerJumpingL;
 	public static BufferedImage[] playerFallingR;
 	public static BufferedImage[] playerFallingL;
+	public static BufferedImage[] playerPreVaultR;
+	public static BufferedImage[] playerPreVaultL;
+	public static BufferedImage[] playerVaultingR;
+	public static BufferedImage[] playerVaultingL;
+	
+	//OBJECTS
+	public static BufferedImage staff;
 	
 	//TILES
 	public static BufferedImage[] dirtTiles;
@@ -29,6 +36,10 @@ public class Assets {
 		SpriteSheet sh_playerJumpingL = new SpriteSheet(SpriteSheet.flipHorizontally(ImageLoader.loadImage("/textures/playerJumping.png")));
 		SpriteSheet sh_playerFallingR = new SpriteSheet(ImageLoader.loadImage("/textures/playerFalling.png"));
 		SpriteSheet sh_playerFallingL = new SpriteSheet(SpriteSheet.flipHorizontally(ImageLoader.loadImage("/textures/playerFalling.png")));
+		SpriteSheet sh_playerPreVaultR = new SpriteSheet(ImageLoader.loadImage("/textures/playerPreVault.png"));
+		SpriteSheet sh_playerPreVaultL = new SpriteSheet(SpriteSheet.flipHorizontally(ImageLoader.loadImage("/textures/playerPreVault.png")));
+		SpriteSheet sh_playerVaultingR = new SpriteSheet(ImageLoader.loadImage("/textures/playerVaulting.png"));
+		SpriteSheet sh_playerVaultingL = new SpriteSheet(SpriteSheet.flipHorizontally(ImageLoader.loadImage("/textures/playerVaulting.png")));
 		
 		playerIdleR = sh_playerIdleR.cropSheet(34, 1, 16, 16);
 		playerIdleL = sh_playerIdleL.cropSheet(34, 1, 16, 16);
@@ -38,6 +49,13 @@ public class Assets {
 		playerJumpingL = sh_playerJumpingL.cropSheet(6, 1, 16, 16);
 		playerFallingR = sh_playerFallingR.cropSheet(1, 1, 16, 16);
 		playerFallingL = sh_playerFallingL.cropSheet(1, 1, 16, 16);
+		playerPreVaultR = sh_playerPreVaultR.cropSheet(10, 1, 16, 16);
+		playerPreVaultL = sh_playerPreVaultL.cropSheet(10, 1, 16, 16);
+		playerVaultingR = sh_playerVaultingR.cropSheet(4, 1, 16, 16);
+		playerVaultingL = sh_playerVaultingL.cropSheet(4, 1, 16, 16);
+		
+		//OBJECTS
+		staff = ImageLoader.loadImage("/textures/staff.png");
 		
 		//TILES
 		SpriteSheet sh_dirt = new SpriteSheet(ImageLoader.loadImage("/textures/dirt.png"));

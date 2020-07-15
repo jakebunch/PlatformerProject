@@ -48,6 +48,10 @@ public class Tile {
 		return false;
 	}
 	
+	public boolean isVaultable() {
+		return false;
+	}
+	
 	public int getId() {
 		return id;
 	}

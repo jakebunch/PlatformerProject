@@ -29,7 +29,7 @@ public abstract class Entity {
 	public abstract void render(Graphics g);
 	
 	public boolean collideWithTile(int x, int y) {
-		boolean tileCollision = handler.getWorld().getTile((hitbox.x + x) / Tile.TILEWIDTH, (hitbox.y + y) / Tile.TILEHEIGHT).isSolid() ||
+		return handler.getWorld().getTile((hitbox.x + x) / Tile.TILEWIDTH, (hitbox.y + y) / Tile.TILEHEIGHT).isSolid() ||
 				handler.getWorld().getTile((hitbox.x + x) / Tile.TILEWIDTH, (hitbox.y + hitbox.height + y) / Tile.TILEHEIGHT).isSolid() ||
 				handler.getWorld().getTile((hitbox.x + hitbox.width + x) / Tile.TILEWIDTH, (hitbox.y + y) / Tile.TILEHEIGHT).isSolid() ||
 				handler.getWorld().getTile((hitbox.x + hitbox.width + x) / Tile.TILEWIDTH, (hitbox.y + hitbox.height + y) / Tile.TILEHEIGHT).isSolid() ||
@@ -37,14 +37,6 @@ public abstract class Entity {
 				handler.getWorld().getTile((hitbox.x + (hitbox.width / 2) + x) / Tile.TILEWIDTH, (hitbox.y + hitbox.height + y) / Tile.TILEHEIGHT).isSolid() ||
 				handler.getWorld().getTile((hitbox.x + x) / Tile.TILEWIDTH, (hitbox.y + (hitbox.height / 2) + y) / Tile.TILEHEIGHT).isSolid() ||
 				handler.getWorld().getTile((hitbox.x + hitbox.width + x) / Tile.TILEWIDTH, (hitbox.y + (hitbox.height / 2) + y) / Tile.TILEHEIGHT).isSolid();
-		
-		boolean solidCollision = false;
-//		Rectangle temphitbox = new Rectangle(hitbox.x + x, hitbox.y + y, hitbox.width, hitbox.height);
-//		for(Solid solid : handler.getWorld().getEntityManager().getSolids()) {
-//			solidCollision |= temphitbox.intersects(solid.hitbox);
-//		}
-		
-		return tileCollision || solidCollision;
 	}
 
 	public boolean collideWithSolid(int x, int y) {
@@ -57,6 +49,9 @@ public abstract class Entity {
 		return solidCollision;
 	}
 	
+	public boolean collisionCheck(int xOffset, int yOffset) {
+		return collideWithTile(xOffset, yOffset) || collideWithSolid(xOffset, yOffset);
+	}
 	
 	//GETTERS AND SETTERS
 	

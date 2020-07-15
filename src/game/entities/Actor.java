@@ -28,7 +28,7 @@ public abstract class Actor extends Entity implements Squish {
 			int sign = Integer.signum(move);
 			
 			while(move != 0) {
-				if(!collideWithTile(sign, 0) && !collideWithSolid(sign, 0)) {
+				if(!collisionCheck(sign, 0)) {
 					x += sign;
 					hitbox.x += sign;
 					move -= sign;
@@ -54,7 +54,7 @@ public abstract class Actor extends Entity implements Squish {
 			int sign = Integer.signum(move);
 			
 			while(move != 0) {
-				if(!collideWithTile(0, sign) && !collideWithSolid(0, sign)) {
+				if(!collisionCheck(0, sign)) {
 					y += sign;
 					hitbox.y += sign;
 					move -= sign;
