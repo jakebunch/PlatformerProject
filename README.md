@@ -44,6 +44,7 @@ CURRENT GOALS
   - Only be render/focus on objects in the current "room"
   - Smooth room transitions, like in Celeste
 - work on player class
+  - have it snap to nearest pixel
   - implement crouching and staff-dashing
   - implement wall sliding and wall jumping
   - implement temporary dying animation
