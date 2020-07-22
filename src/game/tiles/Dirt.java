@@ -1,18 +1,12 @@
 package game.tiles;
 
-import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
-import game.gfx.Assets;
+public class Dirt extends TileSet {
 
-public class Dirt extends Tile {
-
-	public Dirt(int id) {
+	public Dirt(BufferedImage[] texture, int id) {
 		super(null, id);
-	}
-	
-	@Override
-	public void render(Graphics g, int x, int y, int dir) {
-		g.drawImage(Assets.dirtTiles[dir], x, y, TILEWIDTH, TILEHEIGHT, null);
+		this.texture = texture;
 	}
 	
 	@Override

@@ -104,6 +104,10 @@ public abstract class Solid extends Entity {
 		return false;
 	}
 	
+	public boolean isDangerous() {
+		return false;
+	}
+	
 	private ArrayList<Actor> getRidingActors() {
 		ArrayList<Actor> riding = new ArrayList<>();
 		for(Actor actor : handler.getWorld().getEntityManager().getActors()) {

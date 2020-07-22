@@ -19,13 +19,13 @@ public class GameCamera {
 		if(xOffset < 0) {
 			xOffset = 0;
 		} else if(xOffset > handler.getWorld().getWidth() * Tile.TILEWIDTH - handler.getWidth()) {
-			xOffset = handler.getWorld().getWidth() * Tile.TILEWIDTH;
+			xOffset = handler.getWorld().getWidth() * Tile.TILEWIDTH - handler.getWidth();
 		}
 		
 		if(yOffset < 0) {
 			yOffset = 0;
 		} else if(yOffset > handler.getWorld().getHeight() * Tile.TILEHEIGHT - handler.getHeight()) {
-			yOffset = handler.getWorld().getHeight() * Tile.TILEHEIGHT;
+			yOffset = handler.getWorld().getHeight() * Tile.TILEHEIGHT - handler.getHeight();
 		}
 	}
 	
@@ -35,9 +35,9 @@ public class GameCamera {
 		checkBlankSpace();
 	}
 	
-	public void move(int xAmount, int yAmount) {
-		xOffset += xAmount;
-		yOffset += yAmount;
+	public void move(float xAmt, float yAmt) {
+		xOffset += xAmt;
+		yOffset += yAmt;
 		checkBlankSpace();
 	}
 	

@@ -17,13 +17,22 @@ public class Assets {
 	public static BufferedImage[] playerPreVaultL;
 	public static BufferedImage[] playerVaultingR;
 	public static BufferedImage[] playerVaultingL;
+	public static BufferedImage[] playerFlippingR;
+	public static BufferedImage[] playerFlippingL;
+	public static BufferedImage[] playerTurningR;
+	public static BufferedImage[] playerTurningL;
 	
 	//OBJECTS
 	public static BufferedImage staff;
+	public static BufferedImage[] dustParticles;
 	
 	//TILES
 	public static BufferedImage[] dirtTiles;
 	public static BufferedImage[] brickTiles;
+	
+	//SOLIDS
+	public static BufferedImage[] spikes;
+	public static BufferedImage[] platform;
 	
 	public static void init() {
 		
@@ -40,6 +49,10 @@ public class Assets {
 		SpriteSheet sh_playerPreVaultL = new SpriteSheet(SpriteSheet.flipHorizontally(ImageLoader.loadImage("/textures/playerPreVault.png")));
 		SpriteSheet sh_playerVaultingR = new SpriteSheet(ImageLoader.loadImage("/textures/playerVaulting.png"));
 		SpriteSheet sh_playerVaultingL = new SpriteSheet(SpriteSheet.flipHorizontally(ImageLoader.loadImage("/textures/playerVaulting.png")));
+		SpriteSheet sh_playerFlippingR = new SpriteSheet(ImageLoader.loadImage("/textures/playerFlipping.png"));
+		SpriteSheet sh_playerFlippingL = new SpriteSheet(SpriteSheet.flipHorizontally(ImageLoader.loadImage("/textures/playerFlipping.png")));
+		SpriteSheet sh_playerTurningR = new SpriteSheet(ImageLoader.loadImage("/textures/playerTurning.png"));
+		SpriteSheet sh_playerTurningL = new SpriteSheet(SpriteSheet.flipHorizontally(ImageLoader.loadImage("/textures/playerTurning.png")));
 		
 		playerIdleR = sh_playerIdleR.cropSheet(34, 1, 16, 16);
 		playerIdleL = sh_playerIdleL.cropSheet(34, 1, 16, 16);
@@ -53,8 +66,15 @@ public class Assets {
 		playerPreVaultL = sh_playerPreVaultL.cropSheet(10, 1, 16, 16);
 		playerVaultingR = sh_playerVaultingR.cropSheet(4, 1, 16, 16);
 		playerVaultingL = sh_playerVaultingL.cropSheet(4, 1, 16, 16);
+		playerFlippingR = sh_playerFlippingR.cropSheet(8, 1, 16, 16);
+		playerFlippingL = sh_playerFlippingL.cropSheet(8, 1, 16, 16);
+		playerTurningR = sh_playerTurningR.cropSheet(6, 1, 16, 16);
+		playerTurningL = sh_playerTurningL.cropSheet(6, 1, 16, 16);
 		
 		//OBJECTS
+		SpriteSheet sh_dustParticles = new SpriteSheet(ImageLoader.loadImage("/textures/dust.png"));
+		
+		dustParticles = sh_dustParticles.cropSheet(4, 4, 8, 8);
 		staff = ImageLoader.loadImage("/textures/staff.png");
 		
 		//TILES
@@ -63,6 +83,13 @@ public class Assets {
 		
 		dirtTiles = sh_dirt.cropSheet(7, 4, 8, 8);
 		brickTiles = sh_bricks.cropSheet(7, 4, 8, 8);
+		
+		//SOLIDS
+		SpriteSheet sh_spikes = new SpriteSheet(ImageLoader.loadImage("/textures/spikes.png"));
+		SpriteSheet sh_platform = new SpriteSheet(ImageLoader.loadImage("/textures/platform.png"));
+		
+		spikes = sh_spikes.cropSheet(2, 2, 8, 8);
+		platform = sh_platform.cropSheet(1, 3, 8, 8);
 		
 	}
 	

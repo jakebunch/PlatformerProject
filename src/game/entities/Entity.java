@@ -12,7 +12,7 @@ public abstract class Entity {
 	protected int x, y;
 	protected int width, height;
 	protected boolean active = true;
-	protected Rectangle hitbox;
+	public Rectangle hitbox;
 	
 	public Entity(Handler handler, int x, int y, int width, int height) {
 		this.handler = handler;
@@ -27,6 +27,10 @@ public abstract class Entity {
 	public abstract void tick();
 	
 	public abstract void render(Graphics g);
+	
+	public boolean collisionCheck(int xOffset, int yOffset) {
+		return collideWithTile(xOffset, yOffset) || collideWithSolid(xOffset, yOffset);
+	}
 	
 	public boolean collideWithTile(int x, int y) {
 		return handler.getWorld().getTile((hitbox.x + x) / Tile.TILEWIDTH, (hitbox.y + y) / Tile.TILEHEIGHT).isSolid() ||
@@ -49,8 +53,14 @@ public abstract class Entity {
 		return solidCollision;
 	}
 	
-	public boolean collisionCheck(int xOffset, int yOffset) {
-		return collideWithTile(xOffset, yOffset) || collideWithSolid(xOffset, yOffset);
+	public boolean collideWithDanger(int x, int y) {
+		boolean solidCollision = false;
+		Rectangle temphitbox = new Rectangle(hitbox.x + x, hitbox.y + y, hitbox.width, hitbox.height);
+		for(Solid solid : handler.getWorld().getEntityManager().getSolids()) {
+			if(solid.isDangerous())
+				solidCollision |= temphitbox.intersects(solid.hitbox);
+		}
+		return solidCollision;
 	}
 	
 	//GETTERS AND SETTERS

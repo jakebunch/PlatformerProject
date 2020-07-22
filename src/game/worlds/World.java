@@ -4,9 +4,11 @@ import java.awt.Graphics;
 
 import game.Handler;
 import game.Utils;
-import game.entities.Box;
 import game.entities.EntityManager;
 import game.entities.Player;
+import game.entities.solids.Box;
+import game.entities.solids.Platform;
+import game.entities.solids.Spike;
 import game.tiles.Tile;
 
 public class World {
@@ -23,7 +25,6 @@ public class World {
 	public World(Handler handler, String path) {
 		this.handler = handler;
 		entityManager = new EntityManager(handler, new Player(handler, 0, 0));
-		//entityManager.addEntity(new Box(handler, 50, 350, 128, 64));
 		
 		loadWorld(path);
 		
@@ -46,8 +47,19 @@ public class World {
 		
 		for(int y = yStart; y < yEnd; y++) {
 			for(int x = xStart; x < xEnd; x++) {
-				getTile(x, y).render(g, (int) (x * Tile.TILEWIDTH - handler.getGameCamera().getxOffset()),
-					(int) (y * Tile.TILEHEIGHT - handler.getGameCamera().getyOffset()), tileOrientation[x][y]);
+				if(getTile(x, y).isDangerous()) {
+					getTile(x, y).render(g, (int) (x * Tile.TILEWIDTH - handler.getGameCamera().getxOffset()),
+						(int) (y * Tile.TILEHEIGHT - handler.getGameCamera().getyOffset()), tileOrientation[x][y]);
+				}
+			}
+		}
+		
+		for(int y = yStart; y < yEnd; y++) {
+			for(int x = xStart; x < xEnd; x++) {
+				if(!getTile(x, y).isDangerous()) {
+					getTile(x, y).render(g, (int) (x * Tile.TILEWIDTH - handler.getGameCamera().getxOffset()),
+						(int) (y * Tile.TILEHEIGHT - handler.getGameCamera().getyOffset()), tileOrientation[x][y]);
+				}
 			}
 		}
 	}
@@ -73,9 +85,18 @@ public class World {
 		spawnY = Utils.parseInt(tokens[4]);
 		
 		tiles = new int[width][height];
+		
 		for(int y = 0; y < height; y++) {
 			for(int x = 0; x < width; x++) {
-				tiles[x][y] = Utils.parseInt(tokens[(x + y * width) + 5]);
+				char c = tokens[(x + y * width) + 5].charAt(0);
+				if(c >= 48 && c <= 57) {
+					tiles[x][y] = Utils.parseInt(tokens[(x + y * width) + 5]);
+				} else if(c >= 97 && c <= 122) {
+					tiles[x][y] = 0;
+					loadSolid(c, x, y);
+				} else {
+					tiles[x][y] = 0;
+				}
 			}
 		}
 		
@@ -131,6 +152,18 @@ public class World {
 		}
 	}
 
+	private void loadSolid(char solid, int x, int y) {
+		if(solid == 'b') {
+			entityManager.addEntity(new Box(handler, x * Tile.TILEWIDTH, y * Tile.TILEHEIGHT));
+		}
+		if(solid == 's') {
+			entityManager.addEntity(new Spike(handler, x * Tile.TILEWIDTH, y * Tile.TILEHEIGHT));
+		}
+		if(solid == 'p') {
+			entityManager.addEntity(new Platform(handler, x * Tile.TILEWIDTH, y * Tile.TILEHEIGHT));
+		}
+	}
+	
 	
 	//GETTERS
 	

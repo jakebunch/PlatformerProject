@@ -96,6 +96,7 @@ public class Game implements Runnable {
 		long now;
 		long lastTime = System.nanoTime();
 		long timer = 0;
+		@SuppressWarnings("unused")
 		int ticks = 0;
 		
 		while(running) {

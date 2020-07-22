@@ -3,6 +3,8 @@ package game.tiles;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import game.gfx.Assets;
+
 public class Tile {
 
 	//STATIC STUFF
@@ -12,8 +14,8 @@ public class Tile {
 	public static Tile[] tiles = new Tile[256];
 	
 	public static Tile noTile = new NoTile(0);
-	public static Tile dirt = new Dirt(1);
-	public static Tile bricks = new Brick(2);
+	public static Tile dirt = new Dirt(Assets.dirtTiles, 1);
+	public static Tile bricks = new Brick(Assets.brickTiles, 2);
 	
 	
 	//CLASS
