@@ -14,7 +14,6 @@ import game.tiles.Tile;
 public class World {
 
 	private Handler handler;
-	//private BufferedImage background;
 	private int width, height;			//Width and Height in terms of tiles
 	private int spawnX, spawnY;
 	private int[][] tiles;
@@ -42,24 +41,12 @@ public class World {
 		int yStart = Math.max(0, handler.getGameCamera().getyOffset() / Tile.TILEHEIGHT);
 		int yEnd = Math.min(height, (handler.getGameCamera().getyOffset() + handler.getHeight()) / Tile.TILEHEIGHT + 1);
 		
-		//g.drawImage(background, 0, 0, 1024, 1024, null);
 		entityManager.render(g);
-		
+
 		for(int y = yStart; y < yEnd; y++) {
 			for(int x = xStart; x < xEnd; x++) {
-				if(getTile(x, y).isDangerous()) {
-					getTile(x, y).render(g, (int) (x * Tile.TILEWIDTH - handler.getGameCamera().getxOffset()),
-						(int) (y * Tile.TILEHEIGHT - handler.getGameCamera().getyOffset()), tileOrientation[x][y]);
-				}
-			}
-		}
-		
-		for(int y = yStart; y < yEnd; y++) {
-			for(int x = xStart; x < xEnd; x++) {
-				if(!getTile(x, y).isDangerous()) {
-					getTile(x, y).render(g, (int) (x * Tile.TILEWIDTH - handler.getGameCamera().getxOffset()),
-						(int) (y * Tile.TILEHEIGHT - handler.getGameCamera().getyOffset()), tileOrientation[x][y]);
-				}
+				getTile(x, y).render(g, (int) (x * Tile.TILEWIDTH - handler.getGameCamera().getxOffset()),
+					(int) (y * Tile.TILEHEIGHT - handler.getGameCamera().getyOffset()), tileOrientation[x][y]);
 			}
 		}
 	}
@@ -78,7 +65,6 @@ public class World {
 		String file = Utils.loadFileAsString(path);
 		String[] tokens = file.split("\\s+");
 		
-		//background = ImageLoader.loadImage(tokens[0]);
 		width = Utils.parseInt(tokens[1]);
 		height = Utils.parseInt(tokens[2]);
 		spawnX = Utils.parseInt(tokens[3]);

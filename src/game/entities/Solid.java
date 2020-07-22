@@ -39,6 +39,7 @@ public abstract class Solid extends Entity {
 			if(moveX != 0) {
 				xRemainder -= moveX;
 				x += moveX;
+				
 				if(moveX > 0) {
 					//Moving to the right
 					for(Actor actor : handler.getWorld().getEntityManager().getActors()) {

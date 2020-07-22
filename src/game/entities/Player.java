@@ -27,7 +27,7 @@ public class Player extends Actor {
 	public static final float JUMPWINDOW = 400;
 	public static final float GRAVITY = 1.2f;
 	
-	public static final float VAULTSPEED = 25;
+	public static final float VAULTSPEED = 30;
 	public static final float VAULTDRIFT = 6;
 	public static final float VAULTTIME = 200;
 	public static final int VAULTRANGE = 64;
@@ -39,23 +39,7 @@ public class Player extends Actor {
 	
 	private float xSpeed = 0;
 	private float ySpeed = 0;
-	
-	private boolean grounded = false;
-	private boolean direction = true; //true = right, false = left
-	
-	private boolean dying = false;
-	private long deathTimer = 0;
-	private float deathXSpeed = 0;
-	private float deathYSpeed = 0;
-	
-	private boolean canJump = false;
-	private boolean jumping = false;
-	private long jumpTimer = 0;
-	private float gravity = 0.9f;
-	
-	private boolean canVault = true;
-	private boolean vaulting = false;
-	private long vaultTimer = 0;
+
 	private Solid vaultSolid = null;
 	
 	//STATES
@@ -111,7 +95,6 @@ public class Player extends Actor {
 	private Animation playerTurningR = new Animation(50, Assets.playerTurningR);
 	private Animation playerTurningL = new Animation(50, Assets.playerTurningL);
 	
-	private Animation lastSprite = playerIdleR;
 	private Animation currentSprite = playerIdleR;
 	
 	
@@ -419,14 +402,14 @@ public class Player extends Actor {
 					else ySpeed = 1;
 				}
 				
-				if(collisionCheck(0, 1)) {
+				if(ySpeed >= 0 && collisionCheck(0, 1)) {
 					ySpeed = 0;
 					if(xSpeed == 0) currentState = State.st_standing;
 					else currentState = State.st_running;
 					break;
 				}
 				else {
-					ySpeed += gravity;
+					ySpeed += GRAVITY;
 				}
 				
 				if(ySpeed < 0 && collisionCheck(0, -1)) ySpeed = 1;
